@@ -59,7 +59,7 @@ namespace Gate
             }
             else
             {
-                throw new InvalidOperationException("未选择保存文件");
+                return null;
             }
         }
 
@@ -79,10 +79,16 @@ namespace Gate
             string JsonOutput = JsonFormatter.ToDiagnosticString(Gateserver);
             string FormattedJson = JsonConvert.SerializeObject(JsonConvert.DeserializeObject(JsonOutput), Formatting.Indented);
             string FilePath = SaveFile();
-            File.WriteAllText(FilePath, FormattedJson);
-
-            Console.WriteLine($"JSON 数据已保存到文件: {FilePath}");
-            Console.WriteLine("解码已完成");
+            if (FilePath == null)
+            {
+                Console.WriteLine("用户未选择保存文件");
+            } 
+            else
+            {
+                File.WriteAllText(FilePath, FormattedJson);
+                Console.WriteLine($"JSON 数据已保存到文件: {FilePath}");
+                Console.WriteLine("解码已完成");
+            }
             Console.Write("请按任意键继续...");
             Console.ReadKey();
         }
