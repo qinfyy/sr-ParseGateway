@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using Google.Protobuf;
+using ProtoBuf;
 using Newtonsoft.Json;
 
-namespace Gate
+namespace sr.ParseGateway
 {
     internal class Program
     {
@@ -75,8 +75,9 @@ namespace Gate
             }
             string Base64EncodedData = File.ReadAllText(DataFile);
             byte[] Base64DecodedData = Convert.FromBase64String(Base64EncodedData);
-            Gateserver Gateserver = Gateserver.Parser.ParseFrom(Base64DecodedData);
-            string JsonOutput = JsonFormatter.ToDiagnosticString(Gateserver);
+            MemoryStream memoryStream = new MemoryStream(Base64DecodedData);
+            Gateserver Gateserver = Serializer.Deserialize<Gateserver>(memoryStream);
+            string JsonOutput = JsonConvert.SerializeObject(Gateserver, Formatting.Indented);
             string FormattedJson = JsonConvert.SerializeObject(JsonConvert.DeserializeObject(JsonOutput), Formatting.Indented);
             string FilePath = SaveFile();
             if (FilePath == null)

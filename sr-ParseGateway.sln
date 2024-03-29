@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gate", "Gate.csproj", "{D0DBA4E5-7B5E-4686-AC0B-5E3CC6003F35}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sr-ParseGateway", "sr-ParseGateway.csproj", "{D0DBA4E5-7B5E-4686-AC0B-5E3CC6003F35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
