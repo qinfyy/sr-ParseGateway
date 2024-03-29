@@ -77,6 +77,7 @@ namespace sr.ParseGateway
             byte[] Base64DecodedData = Convert.FromBase64String(Base64EncodedData);
             MemoryStream memoryStream = new MemoryStream(Base64DecodedData);
             Gateserver Gateserver = Serializer.Deserialize<Gateserver>(memoryStream);
+            memoryStream.Close();
             string JsonOutput = JsonConvert.SerializeObject(Gateserver, Formatting.Indented);
             string FormattedJson = JsonConvert.SerializeObject(JsonConvert.DeserializeObject(JsonOutput), Formatting.Indented);
             string FilePath = SaveFile();
